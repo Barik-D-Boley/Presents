@@ -1002,9 +1002,54 @@ let problem =
 
 let lineSplit = problem.split("\n");
 let lineCount = lineSplit.length;
-let total = 0;
+let volume = 0;
+let wrapping = 0;
+let spool = 0;
+let ribbon = 0;
 
-for (i = 0; i < lineCount; i++) {
-    var num = lineSplit[i].split("x");
-    console.log(num);
+function question1() {
+    //This 
+    for (i = 0; i < lineCount; i++) {
+        var numSplit = lineSplit[i].split("x");
+        volume += numSplit[0] * numSplit[1] * numSplit[2];
+    }
+    console.log(volume);
+}
+
+function question2() {
+    for (i = 0; i < lineCount; i++) {
+        var numSplit = lineSplit[i].split("x");
+        volume += numSplit[0] * numSplit[1] * numSplit[2];
+        var numOrder = numSplit.sort(function(a, b){return a-b});
+        wrapping += (Number(2*numOrder[0]) + Number(numOrder[2])) * (Number(2*numOrder[1] + Number(2*numOrder[0])));
+    }
+    console.log(wrapping);
+}
+
+function question3 () {
+    for (i = 0; i < lineCount; i++) {
+        var numSplit = lineSplit[i].split("x");
+        volume += numSplit[0] * numSplit[1] * numSplit[2];
+        var numOrder = numSplit.sort(function(a, b){return a-b});
+        wrapping += (Number(2*numOrder[0]) + Number(numOrder[2])) * (Number(2*numOrder[1] + Number(2*numOrder[0])));
+        var side1 = (Number(2*numOrder[0]) + Number(numOrder[2]));
+        var side2 = (Number(2*numOrder[1] + Number(2*numOrder[0])));
+        if (side1 < side2) {
+            spool += side1;
+        } else {
+            spool += side2;
+        }
+    }
+    console.log(spool);
+}
+
+function question4() {
+    for (i = 0; i < lineCount; i++) {
+        var numSplit = lineSplit[i].split("x");
+    volume += numSplit[0] * numSplit[1] * numSplit[2];
+    var numOrder = numSplit.sort(function(a, b){return a-b});
+    wrapping += (Number(2*numOrder[0]) + Number(numOrder[2])) * (Number(2*numOrder[1] + Number(2*numOrder[0])));
+    ribbon += (Number(2*numOrder[0]) + Number(2*numOrder[1])) + (Number(2*numOrder[0]) + Number(2*numOrder[2])) + (Number(numOrder[0] * numOrder[1] * numOrder[2]));
+    }
+    console.log(ribbon);
 }
